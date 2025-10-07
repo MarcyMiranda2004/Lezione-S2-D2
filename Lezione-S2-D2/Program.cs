@@ -2,6 +2,12 @@
 using GestioneMacchina;
 using GestioneUtente;
 using GestioneFilm;
+using GestioneCane;
+using GestioneGatto;
+using GestioneUccello;
+using GestioneVeicolo;
+using GestioneAuto;
+using GestioneMoto;
 
 class Program
 {
@@ -15,6 +21,10 @@ class Program
             Console.WriteLine($"1: Libro");
             Console.WriteLine($"2: Macchina");
             Console.WriteLine($"3: Film");
+            Console.WriteLine($"4: Animale");
+            Console.WriteLine($"5: Garage");
+
+            Console.WriteLine();
 
             scelta = int.Parse(Console.ReadLine());
 
@@ -30,6 +40,14 @@ class Program
 
                 case 3:
                     EssFilm();
+                    break;
+
+                case 4:
+                    EssAnimale();
+                    break;
+
+                case 5:
+                    EssGarage();
                     break;
 
                 case 0:
@@ -149,4 +167,84 @@ class Program
 
     }
 
+    public static void EssAnimale()
+    {
+        Cane c1 = new Cane();
+        c1.FaiVerso();
+        c1.Scodinzola();
+
+        Gatto g1 = new Gatto();
+        g1.FaiVerso();
+        g1.FaLeFusa();
+
+        Uccello u1 = new Uccello();
+    }
+
+    public static void EssGarage()
+    {
+        List<Veicolo> veicoli = new List<Veicolo>();
+
+        Console.WriteLine($"Ben tornato da Los Santos Customs, che cosa vuoi fare oggi?");
+        int sceltaVeicolo;
+
+        do
+        {
+            Console.WriteLine($"\n1: Costruisci una Macchina");
+            Console.WriteLine($"2: Costruisci una Moto");
+            Console.WriteLine($"3: Stampa lista Veicoli");
+            Console.WriteLine($"0: Esci");
+            Console.WriteLine();
+
+
+            sceltaVeicolo = int.Parse(Console.ReadLine());
+
+            switch (sceltaVeicolo)
+            {
+                case 1:
+                    Console.Write("Marca: ");
+                    string marcaAuto = Console.ReadLine();
+                    Console.Write("Modello: ");
+                    string modelloAuto = Console.ReadLine();
+                    Console.Write("Numero porte: ");
+                    int porte = int.Parse(Console.ReadLine());
+
+                    Auto nuovaAuto = new Auto(marcaAuto, modelloAuto, porte);
+                    veicoli.Add(nuovaAuto);
+
+                    Console.WriteLine("Auto creata:");
+                    nuovaAuto.StampaInfo();
+                    break;
+
+                case 2:
+                    Console.Write("Marca: ");
+                    string marcaMoto = Console.ReadLine();
+
+                    Console.Write("Modello: ");
+                    string modelloMoto = Console.ReadLine();
+
+                    Console.Write("Tipo di Manubrio: ");
+                    string manubrio = Console.ReadLine();
+
+                    Moto nuovaMoto = new Moto(marcaMoto, modelloMoto, manubrio);
+                    veicoli.Add(nuovaMoto);
+
+                    Console.WriteLine("Moto creata:");
+                    nuovaMoto.StampaInfo();
+                    break;
+
+                case 3:
+                    Veicolo.StampaVeicoli(veicoli);
+                    break;
+
+                case 0:
+                    Console.WriteLine("Uscita dal programma...");
+                    break;
+
+                default:
+                    Console.WriteLine("Scelta non valida!");
+                    break;
+            }
+
+        } while (sceltaVeicolo != 0);
+    }
 }
