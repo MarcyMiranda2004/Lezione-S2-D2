@@ -33,13 +33,13 @@ class Macchina
             Console.WriteLine("1 - Aumenta velocità di 10");
             Console.WriteLine("2 - Cambia tipo motore");
             Console.WriteLine("3 - Aumenta sospensioni di 1");
-            Console.WriteLine("4 - Termina modifiche");
+            Console.WriteLine("0 - Termina modifiche");
 
-            string scelta = Console.ReadLine();
+            int scelta = int.Parse(Console.ReadLine());
 
             switch (scelta)
             {
-                case "1":
+                case 1:
                     if (utente.Crediti >= 1)
                     {
                         macchina.VelMac += 10;
@@ -50,7 +50,7 @@ class Macchina
                         Console.WriteLine("Crediti insufficiente!");
                     break;
 
-                case "2":
+                case 2:
                     if (utente.Crediti >= 1)
                     {
                         Console.Write("Inserisci nuovo tipo di motore: ");
@@ -63,7 +63,7 @@ class Macchina
                         Console.WriteLine("Crediti insufficiente!");
                     break;
 
-                case "3":
+                case 3:
                     if (utente.Crediti >= 1)
                     {
                         macchina.SosMax += 1;
@@ -74,7 +74,7 @@ class Macchina
                         Console.WriteLine("Crediti insufficiente!");
                     break;
 
-                case "4":
+                case 0:
                     continua = false;
                     break;
 
