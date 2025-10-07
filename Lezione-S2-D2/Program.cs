@@ -1,6 +1,7 @@
 ﻿using GestioneLibro;
 using GestioneMacchina;
 using GestioneUtente;
+using GestioneFilm;
 
 class Program
 {
@@ -13,7 +14,7 @@ class Program
             Console.WriteLine($"Ciao, Che esercizio vuoi vedere ?");
             Console.WriteLine($"1: Libro");
             Console.WriteLine($"2: Macchina");
-
+            Console.WriteLine($"3: Film");
 
             scelta = int.Parse(Console.ReadLine());
 
@@ -25,6 +26,10 @@ class Program
 
                 case 2:
                     EssMacchina();
+                    break;
+
+                case 3:
+                    EssFilm();
                     break;
 
                 case 0:
@@ -84,6 +89,63 @@ class Program
         macchine.Add(macchina);
 
         Macchina.GestisciModifiche(utente, macchina);
+
+    }
+
+    public static void EssFilm()
+    {
+        List<Film> film = new List<Film>();
+        Film f1 = new Film("The Thing", "John Carpenter", 1982, "Horror");
+        film.Add(f1);
+
+        Film f2 = new Film("The Mask", "Chuck Russell,", 1994, "Comico");
+        film.Add(f2);
+
+        Film f3 = new Film("The Fly", "David Cronenberg", 1986, "Horror/Sci-Fy");
+        film.Add(f3);
+
+        Film f4 = new Film("The truman Show", "Peter Weir", 1998, "Comico/Distopico");
+        film.Add(f4);
+
+        Film f5 = new Film("The Presence", "Tom Provost", 2010, "Horror");
+        film.Add(f5);
+
+        int sceltaFilm;
+
+        do
+        {
+            Console.WriteLine($"Benvenuto da Blockbaster");
+            Console.WriteLine();
+            Console.WriteLine($"Cosa vuoi fare?");
+            Console.WriteLine($"1: Noleggia Film");
+            Console.WriteLine($"2: Stampa Elenco Film");
+            Console.WriteLine($"3: Cerca Film Per Genere");
+
+            sceltaFilm = int.Parse(Console.ReadLine());
+
+            switch (sceltaFilm)
+            {
+                case 1:
+                    Film.NoleggiaFilm(film);
+                    break;
+
+                case 2:
+                    Film.StampaElencoFilm(film);
+                    break;
+
+                case 3:
+                    Film.CercaGenereFilm(film);
+                    break;
+
+                default:
+                    Console.WriteLine($"inserire scelta valida!");
+                    break;
+
+            }
+        } while (sceltaFilm != 0);
+
+
+
 
     }
 
